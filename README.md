@@ -37,54 +37,53 @@ FormBody.Builder builder = new FormBody.Builder();
 //添加参数
 builder.add("name", "chs")
 		.add("password", "123");
-
 FormBody body = builder.build();
 
 OkHttpManager
-		.post()
-		.header(header)
-		.url("url")
-		.params(body)
-		.tag("tag")
-		.setCallback(new StringCallback() {
-			@Override
-			public void onSuccess(int code, String result) {
+	.post()
+	.header(header)
+	.url("url")
+	.params(body)
+	.tag("tag")
+	.setCallback(new StringCallback() {
+		@Override
+		public void onSuccess(int code, String result) {
 
-			}
+		}
 
-			@Override
-			public void onError(Exception e) {
+		@Override
+		public void onError(Exception e) {
 
-			}
+		}
 
-			@Override
-			public void onCancel() {
+		@Override
+		public void onCancel() {
 
-			}
-		});
+		}
+	});
 ```
 ## Get
 ```
 OkHttpManager
-		.get()
-		.url("url")
-		.tag("tag")
-		.setCallback(new GsonCallback<TestBean>() {
-			@Override
-			public void onError(Exception e) {
+	.get()
+	.url("url")
+	.tag("tag")
+	.setCallback(new GsonCallback<TestBean>() {
+		@Override
+		public void onError(Exception e) {
 
-			}
+		}
 
-			@Override
-			public void onCancel() {
+		@Override
+		public void onCancel() {
 
-			}
+		}
 
-			@Override
-			public void onSuccess(int code, TestBean response) {
+		@Override
+		public void onSuccess(int code, TestBean response) {
 
-			}
-		});
+		}
+	});
 ```
 
 ## Upload 
@@ -130,32 +129,32 @@ IRequest request = OkHttpManager
 Map<String, String> header = new HashMap<>();
 
 OkHttpManager
-		.download()
-		.fileName("FileName")
-		.savePath("savePath")
-		.header(header).url("url")
-		.tag("tag")
-		.setCallback(new DownloadCallback() {
-			@Override
-			public void onSuccess(File file) {
+	.download()
+	.fileName("FileName")
+	.savePath("savePath")
+	.header(header).url("url")
+	.tag("tag")
+	.setCallback(new DownloadCallback() {
+		@Override
+		public void onSuccess(File file) {
 
-			}
+		}
 
-			@Override
-			public void onFailure(Call call, Exception e) {
+		@Override
+		public void onFailure(Call call, Exception e) {
 
-			}
+		}
 
-			@Override
-			public void onProgress(long curr, long total) {
+		@Override
+		public void onProgress(long curr, long total) {
 
-			}
+		}
 
-			@Override
-			public void onCancel() {
+		@Override
+		public void onCancel() {
 
-			}
-		});
+		}
+	});
 ```
 
 ## WebSocket
