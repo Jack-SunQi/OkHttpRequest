@@ -22,7 +22,7 @@ allprojects {
 ```
 ```
 dependencies {
-	implementation 'com.github.Jack-SunQi:OkHttpRequest:1.0'
+	implementation 'com.github.Jack-SunQi:OkHttpRequest:1.0.1'
 }
 ```
 ## Maven:
