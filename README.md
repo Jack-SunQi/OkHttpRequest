@@ -8,7 +8,10 @@ a network request library based on okhttp
 - You can add specific params according to your needs, not all of them.
 
 # Download
-Maven:
+step1:Add it in your root build.gradle at the end of repositories:
+step2:Add the dependency
+
+## Gradle:
 ```
 allprojects {
 	repositories {
@@ -17,14 +20,27 @@ allprojects {
 	}
 }
 ```
-
-or Gradle:
 ```
 dependencies {
 	implementation 'com.github.Jack-SunQi:OkHttpRequest:1.0'
 }
 ```
-
+## Maven:
+```
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+```
+<dependency>
+    <groupId>com.github.Jack-SunQi</groupId>
+    <artifactId>OkHttpRequest</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
 # Usage
 
 ## Post
