@@ -19,6 +19,7 @@ public abstract class GsonCallback<T> implements ICallback {
             throw new RuntimeException("Missing type parameter.");
         }
         ParameterizedType parameter = (ParameterizedType) myClass;
+        assert parameter != null;
         type = $Gson$Types.canonicalize(parameter.getActualTypeArguments()[0]);  //将泛型转为type
     }
 

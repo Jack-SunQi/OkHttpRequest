@@ -7,13 +7,13 @@ import com.jack.ok_lib.request.IRequest;
 import com.jack.ok_lib.request.UploadRequest;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UploadParam extends BaseParam<UploadParam> {
 
     private File file;
     private Map<String, String> params;
-    private UploadCallback callback;
     private Attribute attribute;
 
     public Attribute getAttribute() {
@@ -21,14 +21,14 @@ public class UploadParam extends BaseParam<UploadParam> {
     }
 
     public UploadParam() {
+        this.params = new HashMap<>();
     }
 
-    public UploadParam(String url, File file, Map<String, String> params, Map<String, String> header, Object tag, UploadCallback callback) {
+    private UploadParam(String url, File file, Map<String, String> params, Map<String, String> header, Object tag, UploadCallback callback) {
         this.url = url;
         this.file = file;
         this.params = params;
         this.tag = tag;
-        this.callback = callback;
 
         attribute = new Attribute(url, file, params, header, tag, callback);
     }
@@ -98,13 +98,12 @@ public class UploadParam extends BaseParam<UploadParam> {
         return this;
     }
 
-    public UploadParam params(@NonNull Map<String, String> params) {
-        this.params = params;
+    public UploadParam params(@NonNull String key, @NonNull String value) {
+        params.put(key, value);
         return this;
     }
 
     public IRequest setCallback(@NonNull UploadCallback callback) {
-        this.callback = callback;
         IRequest request = new UploadRequest(new UploadParam(url, file, params, header, tag, callback));
         request.exec();
         return request;

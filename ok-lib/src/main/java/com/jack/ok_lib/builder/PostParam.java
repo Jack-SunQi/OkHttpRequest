@@ -6,24 +6,38 @@ import com.jack.ok_lib.callback.ICallback;
 import com.jack.ok_lib.request.IRequest;
 import com.jack.ok_lib.request.PostRequest;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
+import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
 
 public class PostParam extends BaseParam<PostParam> {
 
-    private RequestBody body;
     private Attribute attribute;
+    private Map<String, String> params;
 
     public Attribute getAttribute() {
         return attribute;
     }
 
     public PostParam() {
+        /**
+         * FormBody.Builder builder = new FormBody.Builder();
+         *         //添加参数
+         *         builder.add("name", "chs")
+         *                 .add("password", "123");
+         *
+         *         FormBody body = builder.build();
+         */
+
+        params = new HashMap<>();
+
     }
 
-    public PostParam(String url, RequestBody body, Object tag, Map<String, String> header, ICallback callback) {
+    private PostParam(String url, RequestBody body, Object tag, Map<String, String> header, ICallback callback) {
         attribute = new Attribute(url, body, tag, header, callback);
     }
 
@@ -33,8 +47,8 @@ public class PostParam extends BaseParam<PostParam> {
         return this;
     }
 
-    public PostParam params(@NonNull RequestBody body) {
-        this.body = body;
+    public PostParam params(@NonNull String key, @NonNull String value) {
+        params.put(key, value);
         return this;
     }
 
@@ -51,7 +65,13 @@ public class PostParam extends BaseParam<PostParam> {
     }
 
     public IRequest setCallback(@NonNull ICallback callback) {
-        IRequest request = new PostRequest(new PostParam(url, body, tag, header, callback));
+        FormBody.Builder builder = new FormBody.Builder();
+        Set<String> keys = params.keySet();
+        for (String key : keys) {
+            builder.add(key, params.get(key));
+        }
+
+        IRequest request = new PostRequest(new PostParam(url, builder.build(), tag, header, callback));
         request.exec();
         return request;
     }
