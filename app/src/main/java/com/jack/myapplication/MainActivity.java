@@ -36,19 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         Map<String, String> header = new HashMap<>();
 
-        //拿到body的构建器
-        FormBody.Builder builder = new FormBody.Builder();
-        //添加参数
-        builder.add("name", "chs")
-                .add("password", "123");
-
-        FormBody body = builder.build();
-
         OkHttpManager
                 .post()
                 .header(header)
                 .url("url")
-                .params(body)
+                .params("key", "value")
                 .tag("tag")
                 .setCallback(new StringCallback() {
                     @Override
@@ -104,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 .file(uploadFile)
                 .url("url")
                 .header(header)
-                .params(params)
+                .params("key", "value")
+                .params("hello", "kitty")
                 .setCallback(new UploadCallback() {
                     @Override
                     public void onProgress(long curr, long total, boolean isDone) {
