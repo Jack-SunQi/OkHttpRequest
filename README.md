@@ -22,7 +22,7 @@ allprojects {
 ```
 ```
 dependencies {
-	implementation 'com.github.Jack-SunQi:OkHttpRequest:1.0.1'
+	implementation 'com.github.Jack-SunQi:OkHttpRequest:1.0.2'
 }
 ```
 ## Maven:
@@ -38,7 +38,7 @@ dependencies {
 <dependency>
     <groupId>com.github.Jack-SunQi</groupId>
     <artifactId>OkHttpRequest</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 # Usage
